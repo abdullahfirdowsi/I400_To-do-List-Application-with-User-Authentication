@@ -1,0 +1,114 @@
+* {  
+    box-sizing: border-box;  
+    margin: 0;  
+    padding: 0;  
+}  
+
+body {  
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+    background-color: #f3f4f6;  
+}  
+
+.app-container {  
+    display: flex;  
+    height: 100vh;  
+}  
+
+.sidebar {  
+    width: 250px;  
+    background: #0078d4;  
+    color: white;  
+    padding: 20px;  
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);  
+}  
+
+.sidebar h1 {  
+    font-weight: 300;  
+    margin-bottom: 20px;  
+    font-size: 24px;  
+}  
+
+.sidebar input {  
+    width: 100%;  
+    padding: 10px;  
+    margin-bottom: 10px;  
+    border: none;  
+    border-radius: 4px;  
+}  
+
+.sidebar button {  
+    background: #005a9e;  
+    color: white;  
+    border: none;  
+    padding: 10px;  
+    border-radius: 4px;  
+    cursor: pointer;  
+}  
+
+.sidebar button:hover {  
+    background: #004578;  
+}  
+
+.list-item {  
+    padding: 10px;  
+    background: #005a9e;  
+    border-radius: 4px;  
+    margin-bottom: 8px;  
+    cursor: pointer;  
+    transition: background 0.3s;  
+}  
+
+.list-item:hover {  
+    background: #004578;  
+}  
+
+.task-container {  
+    flex: 1;  
+    padding: 20px;  
+    background: white;  
+    display: flex;  
+    flex-direction: column;  
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);  
+}  
+
+.task-container h2 {  
+    margin-bottom: 20px;  
+}  
+
+.task-container input,  
+.task-container textarea,  
+.task-container select {  
+    width: 100%;  
+    padding: 10px;  
+    margin-bottom: 10px;  
+    border: 1px solid #ccc;  
+    border-radius: 4px;  
+}  
+
+.task-container button {  
+    padding: 10px;  
+    background: #0078d4;  
+    color: white;  
+    border: none;  
+    border-radius: 4px;  
+    cursor: pointer;  
+}  
+
+.task-container button:hover {  
+    background: #005a9e;  
+}  
+
+.task {  
+    background: #f9f9f9;  
+    margin: 10px 0;  
+    padding: 15px;  
+    border: 1px solid #ddd;  
+    border-radius: 4px;  
+    position: relative;  
+}  
+
+.task.completed {  
+    text-decoration: line-through;  
+    background: #e7f4e4;  
+    color: #888;  
+}  

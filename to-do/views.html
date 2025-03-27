@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>All Tasks</title>
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <h1>All Tasks</h1>
+            <button onclick="window.location.href='index.html'">Back to Tasks</button>
+            <h1></h1>
+            <input type="text" id="searchTask" placeholder="Search Tasks">
+            <div class="filter-buttons">
+                <button id="filterAll">All</button>
+                <button id="filterCompleted">Completed</button>
+                <button id="filterPending">Pending</button>
+            </div>
+        </aside>
+        <main class="task-container">
+            <h2>Filtered Tasks</h2>
+            <div id="filteredTaskList"></div>
+        </main>
+    </div>
+    <script>
+        const lists = JSON.parse(localStorage.getItem('taskLists')) || [];
+        let currentFilter = 'all';
+
+        // Function to display tasks based on the current filter and search query
+        function displayFilteredTasks() {
+            const filteredTaskList = document.getElementById('filteredTaskList');
+            const searchQuery = document.getElementById('searchTask').value.toLowerCase();
+            filteredTaskList.innerHTML = '';
+
+            const tasks = [];
+            lists.forEach((list) => {
+                list.tasks.forEach((task) => {
+                    tasks.push(task);
+                });
+            });
+
+            const filteredTasks = tasks.filter((task) => {
+                if (currentFilter === 'completed' && !task.completed) return false;
+                if (currentFilter === 'pending' && task.completed) return false;
+                if (searchQuery && !task.name.toLowerCase().includes(searchQuery)) return false;
+                return true;
+            });
+
+            if (filteredTasks.length === 0) {
+                filteredTaskList.innerHTML = '<p>No tasks found.</p>';
+                return;
+            }
+
+            filteredTasks.forEach((task) => {
+                const taskDiv = document.createElement('div');
+                taskDiv.className = `task ${task.completed ? 'completed' : ''}`;
+                taskDiv.innerHTML = `
+                    <h3>${task.name}</h3>
+                    <p>Description: ${task.description}</p>
+                    <p>Due: ${task.dueDate}</p>
+                    <p>Reminder: ${task.reminderTime ? new Date(task.reminderTime).toLocaleString() : 'No Reminder Set'}</p>
+                    <p>Repeat: ${task.repeatSchedule}</p>
+                `;
+                filteredTaskList.appendChild(taskDiv);
+            });
+        }
+
+        // Event listeners for filter buttons
+        document.getElementById('filterAll').onclick = () => {
+            currentFilter = 'all';
+            displayFilteredTasks();
+        };
+
+        document.getElementById('filterCompleted').onclick = () => {
+            currentFilter = 'completed';
+            displayFilteredTasks();
+        };
+
+        document.getElementById('filterPending').onclick = () => {
+            currentFilter = 'pending';
+            displayFilteredTasks();
+        };
+
+        // Event listener for search input
+        document.getElementById('searchTask').oninput = displayFilteredTasks;
+
+        // Initialize the page
+        displayFilteredTasks();
+    </script>
+</body>
+</html>

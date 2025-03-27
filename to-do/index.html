@@ -1,0 +1,46 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" href="styles.css">  
+    <title>To Do List Application</title>  
+</head>  
+<body>  
+    <div class="app-container">  
+        <aside class="sidebar">  
+            <h1>To Do</h1>  
+
+            <input type="text" id="listName" placeholder="New List Name" required>  
+            <button id="addListBtn">Add</button>  
+            <h1></h1>  
+            <div id="listContainer"></div>  
+            <button id="resetAllBtn">Reset All</button> <!-- New Reset All button -->
+            <h1></h1> 
+            <div style="display: flex; gap: 10px;">
+                <button onclick="window.location.href='views.html'">Apply Filters</button>
+                <button onclick="window.location.href='reminders.html'">View Reminders</button>
+            </div>
+            <!-- <button onclick="window.location.href='views.html'">Apply Filters</button>
+            <button onclick="window.location.href='reminders.html'">View Reminders</button> -->
+            </aside>
+<!-- ...existing code... -->
+        </aside>  
+        <main class="task-container">  
+            <h2 id="currentListTitle">Tasks</h2>
+            <input type="text" id="taskName" placeholder="Task Name" required>  
+            <textarea id="taskDescription" placeholder="Task Description"></textarea>  
+            <input type="datetime-local" id="reminderTime">  
+            <select id="repeatSchedule">  
+                <option value="none">Does Not Repeat</option>  
+                <option value="daily">Daily</option>  
+                <option value="weekdays">Weekdays</option>  
+                <option value="weekends">Weekends</option>  
+            </select>  
+            <button id="addTaskBtn">Add Task</button>  
+            <div id="taskList"></div>  
+        </main>
+    </div>  
+    <script src="script.js"></script>  
+</body>  
+</html>  

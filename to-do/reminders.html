@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Reminders</title>
+</head>
+    <body>
+        <div class="app-container">
+            <aside class="sidebar">
+                <h1>Reminders</h1>
+                <button onclick="window.location.href='index.html'">Back to Tasks</button>
+            </aside>
+            <main class="task-container">
+                <h2>Interactive Reminders</h2>
+                <div id="reminderList"></div>
+            </main>
+        </div>
+    <!-- <script>
+        const lists = JSON.parse(localStorage.getItem('taskLists')) || [];
+    
+        function displayReminders() {
+            const reminderList = document.getElementById('reminderList');
+            reminderList.innerHTML = '';
+    
+            // Collect all tasks with reminders and sort by reminderTime
+            const reminders = [];
+            lists.forEach((list) => {
+                list.tasks.forEach((task) => {
+                    if (task.reminderTime) {
+                        reminders.push(task);
+                    }
+                });
+            });
+    
+            reminders.sort((a, b) => new Date(a.reminderTime) - new Date(b.reminderTime));
+    
+            // Display sorted reminders
+            reminders.forEach((task) => {
+                const reminderDiv = document.createElement('div');
+                reminderDiv.className = 'task';
+                reminderDiv.innerHTML = `
+                    <h3>${task.name}</h3>
+                    <p>Description: ${task.description}</p>
+                    <p>Reminder: ${new Date(task.reminderTime).toLocaleString()}</p>
+                    <p>Repeat: ${task.repeatSchedule}</p>
+                `;
+                reminderList.appendChild(reminderDiv);
+            });
+        }
+    
+        displayReminders();
+    </script> -->
+    <script>
+        const lists = JSON.parse(localStorage.getItem('taskLists')) || [];
+    
+        function displayReminders() {
+            const reminderList = document.getElementById('reminderList');
+            reminderList.innerHTML = '';
+    
+            // Collect all tasks with reminders
+            const reminders = [];
+            lists.forEach((list) => {
+                list.tasks.forEach((task) => {
+                    if (task.reminderTime) {
+                        reminders.push({
+                            ...task,
+                            reminderTime: new Date(task.reminderTime) // Convert to Date object for sorting
+                        });
+                    }
+                });
+            });
+    
+            // Sort reminders by reminderTime
+            reminders.sort((a, b) => a.reminderTime - b.reminderTime);
+    
+            // Display sorted reminders
+            reminders.forEach((task) => {
+                const reminderDiv = document.createElement('div');
+                reminderDiv.className = 'task';
+                reminderDiv.innerHTML = `
+                    <h3>${task.name}</h3>
+                    <p>Description: ${task.description}</p>
+                    <p>Reminder: ${task.reminderTime.toLocaleString()}</p>
+                    <p>Repeat: ${task.repeatSchedule}</p>
+                `;
+                reminderList.appendChild(reminderDiv);
+            });
+        }
+    
+        displayReminders();
+    </script>
+</body>
+</html>
