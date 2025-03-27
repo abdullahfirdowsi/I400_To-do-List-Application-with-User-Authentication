@@ -27,8 +27,6 @@ This project is a simple **To-Do List Application** that includes user authentic
 ├── index.html              # Main HTML file
 ├── styles.css              # CSS file for styling
 ├── script.js               # JavaScript file for app logic
-└── data/
-    └── tasks.json          # JSON file to store tasks (for demo purposes)
 ```
 
 ## Getting Started
